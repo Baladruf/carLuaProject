@@ -1,0 +1,68 @@
+
+
+NB1 : A rendre pour le Mardi 19/12, 10h, Envoyer à : d.hockley@rubika-edu.com avec une copie à f.letiec@rubika-edu.com 
+
+
+Si vous avez des questions d'ici là n'hésitez pas.
+
+
+consignes : 
+============
+
+1/ Si un nom n'a jamais été saisi : écran de bienvenue avec :
+
+- Texte : "Bonjour, comment vous appelez-vous ?" / "Hello, what is your name?"
+- un champ de saisie texte 
+Bouton text "GO" qui s'affiche quand on a saisi un texte de plus de 2 lettres 
+
+On savegarde le nom dans un json 
+
+Si un nom a déjà été sauvegardé dans un lancement antérieur on passe directement au 2 :
+
+2/ Ecran principal 
+
+Un nom d'appli (que vous choisirez)/ de jeu en titre 
+"Bonjour " + nom / "Hello " +  nom   
+
+- play 
+- about
+- settings 
+
+Fond avec un gradient vertical couleur (de la palette material) vers blanc
+
+
+3/ Ecran about :
+Une photo et un block texte qui vous présente : nom, prénom, type de jeux préférés, autres hobbies passions 
+Avec un bouton back qui retourne au menu 
+
+(NB: ce texte ci n'a pas besoin d'être localisé/traduit)
+
+
+4/ Ecan settings :
+(Si vous avez le temps : 3 sliders qui définisssent les composantes RGB de la couleur de l'écran d'accueil, et qu'on sauvegarde ) 
+
+
+5/ écran jeu :
+
+On va faire un "parcours d'obstacle" en voiture 
+
+	+- (optionnel : dans assets/ il y a un sprite sheet go.lua/go.png, pour lancer le jeu avec un "3..2..1..Go")
+
+	- parallax "infini" : on ne fait pas bouger les deux couches du fond 
+
+ 	+- la voiture reste au centre de l'écran : on fait varier l'origine du groupe pour que ça reste central 
+ 
+ 	+- physique sur la voiture (si vous avez le temps, donnez le choix de la voiture au moment du "play" :)  : avec un "motor" sur l'une ou l'autre des roues (ou sur les deux si ça vous tente)
+ 
+ 	+- faire deux boutons cercles en bas et à droite de l'écran : pour faire marche avant / marche arrière sur la voiture 
+
+ 	- récupérez en http/REST une dizaine de valeurs (en prenant le cours GBP/EUR sur l'année de votre choix, et en scalant les valeurs pour que la plus petite fasse 1/10e de la hauteur de l'écran, et la plus grande 1/2 de l'écran ). STOCKEZ les valeurs dans un JSON en local pour pas faire une récupération à chaque lancement de jeu 
+
+	+- créez des corps statiques avec les valeurs récupérées, dont on va faire des obstacles (murs statiques) posés au sol, d'une taille comprise 20% et 50% de la hauteur de l'écran 
+
+	+- en traçant avec le doigt sur la scène le joueur va pouvoir dessiner (et créer en physique) des lignes (qui suivent le tracé du doigt, et persistent) que la voiture pourra utiliser comme rampes pour passer les obstacles
+
+
+
+
+

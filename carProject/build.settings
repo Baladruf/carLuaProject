@@ -1,0 +1,34 @@
+-- Supported values for orientation:
+-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+settings = {
+
+	orientation = {
+		default = "landscapeLeft",
+		supported = { "porlandscapeLefttrait", "landscapeRight" }
+	},
+
+
+	plugins = {
+		--["plugin.notifications.v2"] = { "publisherId" = "com.coronalabs" },
+        --['plugin.logger'] = { "publisherId" = "com.yogergames},
+        -- ['plugin.iCloud'] = {"publisherId" ="com.coronalabs"}
+    },
+
+	iphone = {
+		plist = {
+
+		}
+	},
+
+	android =
+    {
+        useGoogleServicesJson = true,
+        usesPermissions = {
+        	"android.permissions.ACCES_FINE_LOCATION",
+        	"android.permissions.ACCES_COARSE_LOCATION"
+
+        }
+    },
+
+}

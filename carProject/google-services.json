@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "108487549486",
+    "firebase_url": "https://quizz-in.firebaseio.com",
+    "project_id": "quizz-in",
+    "storage_bucket": "quizz-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108487549486:android:fec302820b4721d6",
+        "android_client_info": {
+          "package_name": "om.qahalmedia.quizzin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108487549486-625ofivk10cgam33h3s3h2e04bisr0l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT8Ml_10Xusw92bETbFWTvKxPi22AgXCw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
