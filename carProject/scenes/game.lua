@@ -12,6 +12,9 @@ local world
 local player
 local canDrawLine = false
 local grpButton
+local scale
+
+local paral = {}
 
 local function makeCar(id)
 	
@@ -193,11 +196,11 @@ end
 function scene:create(event)
 
 	physics.start()
-	--physics.setDrawMode("hybrid")
+	physics.setDrawMode("hybrid")
 	
 	-- scene.view 
 	
-	local scale
+	--local scale
 	
 	local grps = display.newGroup()
 	groupGround = display.newGroup()
@@ -246,15 +249,15 @@ function scene:create(event)
 	--sky.y = screenH - (screenH/sky.height)*sky.height/2
 	
 	groups[7] = grps
-	world = display.newGroup()
+	
 	for i = 6,1, -1 do -- paralaxe
 
 	
-		
+		--local groupPara = display.newGroup()
 		--container:insert(grp)
-		local img = display.newImage(world, "assets/bg/2/"..i..".png")
-		local img2 = display.newImage(world, "assets/bg/2/"..i..".png")
-		local img3 = display.newImage(world, "assets/bg/2/"..i..".png")
+		local img = display.newImage("assets/bg/2/"..i..".png")
+		local img2 = display.newImage("assets/bg/2/"..i..".png")
+		local img3 = display.newImage("assets/bg/2/"..i..".png")
 		
 		scale = screenH/img.height
 		
@@ -278,11 +281,15 @@ function scene:create(event)
 		img2.x = img.x - img.width*scale 
 		img3.x = img.x + img.width*scale
 		
-			
-		
-		
+		local im = {}
+		im[1] = img
+		im[2] = img2
+		im[3] = img3
+		paral[i] = im
 		
 		if (i == 1 ) then 
+
+			world = display.newGroup()
 			--img2.x = img.x - img.width * scale / 1.15
 			--physics.addBody(img, "static", {bounce = 0, box = { halfWidth=img.width/2, halfHeight=screenH*0.9, x=img.width, y=img.height}})
 			--physics.addBody(img2, "static", {bounce = 0, box = { halfWidth=img2.width/2, halfHeight=screenH*0.9, x=0, y=0}})
@@ -377,8 +384,44 @@ function scene:create(event)
 	
 	function player:enterFrame(event) -- a toutes les frames reposition du monde par rapport au player (need script camera)
 		--table.print(cameraG)
-		cameraG.update(player, world, lineList)
+		local dx = cameraG.update(player, world)
+		for i = 1, 6 do 
+			local grBack = paral[i]
+			local scaleX = grBack[1].xScale
+			for j = 1, 3 do 
+				grBack[j].x = grBack[j].x - (dx / i)
+				
+				if grBack[j].x + grBack[j].width/2 * scaleX > grBack[j].width * 3/2 then --screenW --[[grBack[j].x < -screenW--]] then
+					--grBack[j].x = screenW
+					grBack[j].x = grBack[j].x - grBack[j].width * scaleX * 3
+				elseif grBack[j].x + grBack[j].width/2 * scaleX < -grBack[j].width * 3/2 --[[grBack[j].x > screenW--]] then 
+					grBack[j].x = grBack[j].x + grBack[j].width * scaleX * 3
+				end
+			end
+		end
 	end
+
+		--[[for x = 1, 6, 1 do
+	         parallaxPlan = groups[x]
+	         scale = parallaxPlan[0].xScale
+	         if delta > 0 then
+	             for i = 0, 2, 1 do
+	                 plan = parallaxPlan[i]
+	                 plan.x = plan.x - delta / x
+	                 if ((plan.x + plan.width/2 * scale) < 0) then
+	                     plan.x = plan.x + plan.width * scale * 3
+	                 end
+	             end
+	         elseif delta < 0 then
+	             for i = 0, 2, 1 do
+	                 plan = parallaxPlan[i]
+	                 plan.x = plan.x - delta / x
+	                 if ((plan.x - plan.width/2 * scale) > screenW) then
+	                     plan.x = plan.x - plan.width * scale * 3
+	                 end
+	             end
+	         end
+	     end--]]
 	Runtime:addEventListener("enterFrame", player)
 	--local char = makeChar()
 	--physics.addBody(car.grpRL, "dynamic", {bounce = 0, box = {halfWidth = .35*car.wheel1.contentWidth, halfHeight = .5*car.wheel1.contentHeight}})

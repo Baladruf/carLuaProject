@@ -1,0 +1,5 @@
+en game bouton gauche / droite -> avance / reculer
+
+bouton milieu si appuyer, permet de tracer des lignes
+
+Pour changer le pseudo et la gradient menu -> vider les fichiers assets/save/intro et assets/save/menuColor
